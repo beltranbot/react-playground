@@ -1,51 +1,36 @@
-import { useState } from "react";
-import "./ExpenseForm.css";
+import { useState } from "react"
+import "./ExpenseForm.css"
 
 const ExpenseForm = () => {
-  // const [enteredTitle, setEnteredTitle] = useState("");
-  // const [enteredAmount, setEnteredAmount] = useState("");
-  // const [enteredDate, setEnteredDate] = useState("");
-  const [userInput, setUserInput] = useState({
-    enteredTitle: '',
-    enteredAmount: '',
-    enteredDate: '',
-  })
+  const [enteredTitle, setEnteredTitle] = useState("")
+  const [enteredAmount, setEnteredAmount] = useState("")
+  const [enteredDate, setEnteredDate] = useState("")
 
   const titleChangeHandler = (event) => {
-    // this way of updating state can some times fail
-    // setUserInput({
-    //   ...userInput, // spread the value of the userInput Object
-    //   enteredTitle: event.target.value
-    // })
-
-    // this ensure that we operate in the latest state snapshot
-    setUserInput((prevState) => {
-      return {
-        prevState,
-        enteredTitle: event.target.value
-      }
-    })
+    setEnteredTitle(event.target.value)
   };
+
   const amountChangeHandler = (event) => {
     // even if the type of the input is a number, event.target.value is casted as a string
-    setUserInput((prevState) => {
-      return {
-        prevState,
-        enteredAmount: event.target.value
-      }
-    })
-  };
-  const dateChangeHandler = (event) => {
-    setUserInput((prevState) => {
-      return {
-        prevState,
-        enteredDate: event.target.value
-      }
-    })
+    setEnteredAmount(event.target.value)
   };
 
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value)
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate)
+    }
+    console.log('expense data', expenseData)
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
