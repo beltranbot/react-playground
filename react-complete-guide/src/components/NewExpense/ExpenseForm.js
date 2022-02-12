@@ -2,19 +2,46 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  // const [enteredTitle, setEnteredTitle] = useState("");
+  // const [enteredAmount, setEnteredAmount] = useState("");
+  // const [enteredDate, setEnteredDate] = useState("");
+  const [userInput, setUserInput] = useState({
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: '',
+  })
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    // this way of updating state can some times fail
+    // setUserInput({
+    //   ...userInput, // spread the value of the userInput Object
+    //   enteredTitle: event.target.value
+    // })
+
+    // this ensure that we operate in the latest state snapshot
+    setUserInput((prevState) => {
+      return {
+        prevState,
+        enteredTitle: event.target.value
+      }
+    })
   };
   const amountChangeHandler = (event) => {
     // even if the type of the input is a number, event.target.value is casted as a string
-    setEnteredAmount(event.target.value);
+    setUserInput((prevState) => {
+      return {
+        prevState,
+        enteredAmount: event.target.value
+      }
+    })
   };
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+    setUserInput((prevState) => {
+      return {
+        prevState,
+        enteredDate: event.target.value
+      }
+    })
   };
 
   return (
