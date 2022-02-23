@@ -43,8 +43,11 @@ const AddUser = (props) => {
   }
 
   // applying 2 css classes
+  // empty tags are called fragments
+  // alternatively you can use <React.Fragment/>
+  // fragment are just empty wrappers around components
   return (
-    <Wrapper>
+    <>
       {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler}/>}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
@@ -65,7 +68,7 @@ const AddUser = (props) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </Wrapper>
+    </>
   );
 };
 
