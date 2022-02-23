@@ -5,8 +5,10 @@ import ErrorModal from "../UI/ErrorModal";
 import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
+  // uncontrolled components -> no controller by react
   const nameInputRef = useRef();
   const ageInputRef = useRef();
+  // controlled components -> mostly refer to inputs that use useState
   const [error, setError] = useState();
 
   const addUserHandler = (event) => {
