@@ -12,7 +12,7 @@ const MealItem = (props) => {
       id: props.id,
       name: props.name,
       amount: amount,
-      prices: props.price
+      price: props.price
     });
   };
   return <li className={classes.meal}>
