@@ -10,11 +10,11 @@ const Cart = (props) => {
   const hasItems = cartCtx.items.length > 0;
 
   const cartItemRemoveHandler = id => {
-
+    cartCtx.removeItem(id);
   }
 
   const cartItemAddHandler = item => {
-    
+    cartCtx.addItem({ ...item, amount: 1 });
   }
 
   // bind preconfigures a function, and basically allows you to preconfigure the argument(s) it will recieve
